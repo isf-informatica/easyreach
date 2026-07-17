@@ -3,3 +3,9 @@ from app.models.command_model import Command
 from app.models.status_model import SchoolStatus
 from app.models.user_model import User
 from app.models.log_model import SchoolLog
+from app.models.school_model import School
+from app.models.command_model import Command
+from app.models.status_model import SchoolStatus
+from app.models.user_model import User
+from app.models.log_model import SchoolLog
+from app.models.device_model import Device

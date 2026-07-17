@@ -4,18 +4,13 @@ from sqlalchemy.sql import func
 from app.core.database import Base
 import enum
 
-class SchoolStatus(str, enum.Enum):
-    active = "active"
-    killed = "killed"
-    pending = "pending"
-    suspended = "suspended"
-
 class School(Base):
     __tablename__ = "schools"
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     code = Column(String(20), unique=True, nullable=False)
+    institution_type = Column(String(20), default="school")  # school / college / institute
     contact_name = Column(String(100))
     contact_email = Column(String(100))
     erp_domain = Column(String(100))
@@ -34,7 +29,9 @@ class School(Base):
     db_name = Column(String(100))
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
     # Relationships
     commands = relationship("Command", back_populates="school")
-    status = relationship("SchoolStatus", back_populates="school", uselist=False)
+    status_info = relationship("SchoolStatus", back_populates="school", uselist=False)
     logs = relationship("SchoolLog", back_populates="school")
+    devices = relationship("Device", back_populates="school")

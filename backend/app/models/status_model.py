@@ -16,4 +16,4 @@ class SchoolStatus(Base):
     last_seen_at = Column(DateTime, nullable=True)
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
 
-    school = relationship("School", back_populates="status")
+    school = relationship("School", back_populates="status_info")

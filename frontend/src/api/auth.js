@@ -1,16 +1,16 @@
 import api from './axios'
 
 export const login = async (email, password) => {
-  const formData = new FormData()
-  formData.append('username', email)
-  formData.append('password', password)
-  const res = await api.post('/api/auth/login', formData, {
+  const params = new URLSearchParams()
+  params.append('username', email)
+  params.append('password', password)
+  const res = await api.post('/easyreach/auth/login', params, {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
   })
   return res.data
 }
 
 export const getMe = async () => {
-  const res = await api.get('/api/auth/me')
+  const res = await api.get('/easyreach/auth/me')
   return res.data
 }
